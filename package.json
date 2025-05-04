@@ -1,0 +1,17 @@
+{
+  "name": "clone_twitter",
+  "version": "1.0.0",
+  "description": "Clone of the Twitter that is X with React.js, Express.js, MongoDB, Node.js and Tailwind.css",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "mongoose": "^8.14.1"
+  }
+}
