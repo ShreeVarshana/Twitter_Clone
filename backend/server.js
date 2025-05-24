@@ -3,6 +3,7 @@
 import dotenv from "dotenv";
 import express from "express";
 import cookieParser from "cookie-parser";
+import cloudinary from "cloudinary";
 
 
 import authRoute from "./routes/auth.route.js";
@@ -10,6 +11,14 @@ import userRoute from "./routes/user.route.js";
 import connectDB from "./db/connectDB.js";
 
 dotenv.config();
+
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET
+
+});
+
 const app = express(); // server instance using this we can make the routes, middlewares etc...
 app.use(cookieParser());
 const PORT = process.env.PORT;
