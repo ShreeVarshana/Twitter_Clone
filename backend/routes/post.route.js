@@ -1,11 +1,11 @@
 import express from "express";
 import protectRoute from "../middleware/protectRoute.js";
-import { createPost, deletePost, createcomment } from "../controllers/post.controller.js";
+import { createPost, deletePost, createcomment, likeUnlikePost } from "../controllers/post.controller.js";
 
 const router = express.Router();
 
 router.post("/create", protectRoute, createPost);
-// router.post("/like/:id", protectRoute, likeUnlikePost);
+router.post("/like/:id", protectRoute, likeUnlikePost);
 router.post("/comment/:id", protectRoute, createcomment);
 router.delete("/:id", protectRoute, deletePost);
 
