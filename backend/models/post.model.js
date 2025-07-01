@@ -1,41 +1,44 @@
 import mongoose from "mongoose";
 
-const postScheme = mongoose.Schema({
-    user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-        required: true
-    },
-    text: {
-        type: String,
+const postSchema = new mongoose.Schema(
+	{
+		user: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: "User",
+			required: true,
+		},
+		text: {
+			type: String,
+		},
+		img: {
+			type: String,
+		},
+		likes: [
+			{
+				type: mongoose.Schema.Types.ObjectId,
+				ref: "User",
+			},
+		],
+		comments: [
+			{
+				text: {
+					type: String,
+					required: true,
+				},
+				user: {
+					type: mongoose.Schema.Types.ObjectId,
+					ref: "User",
+					required: true,
+				},
+			},
+		],
+	},
+	{ timestamps: true }
+);
 
-    },
-    img: {
-        type: String
-    },
-    like: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "User"
-        }
-    ],
-    comments: [
-        {
-            text: {
-                type: String,
-                required: true
-            },
-            user: {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: "User",
-                required: true
-            }
-        }
-    ]
-}, {
-    timestamps: true
-})
+// Add text index for content search
+postSchema.index({ content: 'text' });
 
-const Post = mongoose.model("Posts", postScheme);
+const Post = mongoose.model("Post", postSchema);
 
 export default Post;
